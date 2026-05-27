@@ -10,6 +10,7 @@ import ProfilePage from './pages/profile/ProfilePage';
 import Saved from './pages/saved/Saved';
 import Earnings from './pages/earnings/Earnings';
 import MyPrompts from './pages/myPrompts/MyPromptsPage';
+import SellPromptPage from './pages/sellPrompt/SellPromptPage';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/sell-prompt" element={<SellPromptPage />} />
         </Route>
 
       </Routes>

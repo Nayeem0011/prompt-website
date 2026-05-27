@@ -1,4 +1,5 @@
-import { NavLink, useNavigate, useSearchParams, useLocation } from "react-router-dom";
+import { Library } from "lucide-react";
+import { NavLink, Link, useNavigate, useSearchParams, useLocation } from "react-router-dom";
 
 const categories = [
   {
@@ -211,9 +212,11 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
                 <p className="text-xs text-white/40 leading-relaxed mb-3">
                   Earn $0.001 per prompt sold. Upload once, earn forever.
                 </p>
-                <button className="w-full bg-linear-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 rounded-xl py-2 text-xs font-semibold text-white transition-all duration-200">
-                  Upload Prompts
-                </button>
+                <Link to="/sell-prompt">
+                  <button className="w-full bg-linear-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 rounded-xl py-2 text-xs font-semibold text-white transition-all duration-200 cursor-pointer">
+                    Upload Prompts
+                  </button>
+                </Link>
               </div>
             </div>
           )}
