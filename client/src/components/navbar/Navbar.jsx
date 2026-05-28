@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
 
   const currentPath = location.pathname.replace("/", "") || "home";
@@ -103,7 +102,7 @@ const Navbar = () => {
               Login
             </button>
           </Link>
-          <Link to="/sell-prompts">
+          <Link to="/sell-prompt">
             <button className="flex items-center gap-2 bg-linear-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 rounded-xl px-4 py-2 text-sm font-semibold text-white transition-all duration-200 shadow-lg shadow-fuchsia-900/30 cursor-pointer">
               Sell Prompts
             </button>

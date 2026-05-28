@@ -1,4 +1,3 @@
-import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/home/Home';
@@ -9,7 +8,6 @@ import SignUp from './pages/register/SignUp';
 import ProfilePage from './pages/profile/ProfilePage';
 import Saved from './pages/saved/Saved';
 import Earnings from './pages/earnings/Earnings';
-import MyPrompts from './pages/myPrompts/MyPromptsPage';
 import SellPromptPage from './pages/sellPrompt/SellPromptPage';
 
 const App = () => {

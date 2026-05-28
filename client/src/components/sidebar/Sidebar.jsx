@@ -1,4 +1,3 @@
-import { Library } from "lucide-react";
 import { NavLink, Link, useNavigate, useSearchParams, useLocation } from "react-router-dom";
 
 const categories = [

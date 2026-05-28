@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-// ─── Mock user data (replace with real API) ───────────────────────────────────
+// Mock user data (replace with real API)
 const mockUser = {
     id: "usr_01",
     name: "Arif Hossain",
@@ -19,9 +19,7 @@ const mockUser = {
     verified: true,
 };
 
-const categories = ["All", "Ads & Product", "Brand & Logo", "Illustration & 3D", "Posters & Visuals", "Portraits"];
-
-// ─── Avatar component ─────────────────────────────────────────────────────────
+// Avatar component
 function Avatar({ src, name, size = 80 }) {
     const initials = name?.split(" ").map((w) => w[0]).join("").toUpperCase().slice(0, 2) || "?";
     return src ? (
@@ -40,7 +38,7 @@ function Avatar({ src, name, size = 80 }) {
     );
 }
 
-// ─── Input field ──────────────────────────────────────────────────────────────
+// Input field
 function Field({ label, value, onChange, type = "text", placeholder, icon, disabled }) {
     return (
         <div>
@@ -63,7 +61,7 @@ function Field({ label, value, onChange, type = "text", placeholder, icon, disab
     );
 }
 
-// ─── Section wrapper ──────────────────────────────────────────────────────────
+// Section wrapper
 function Section({ title, sub, children }) {
     return (
         <div className="bg-white/3 border border-white/[0.07] rounded-2xl overflow-hidden">
@@ -76,8 +74,7 @@ function Section({ title, sub, children }) {
     );
 }
 
-// ─── Main Profile Page ────────────────────────────────────────────────────────
-export default function ProfilePage() {
+const ProfilePage = () => {
     const [user, setUser] = useState(mockUser);
     const [form, setForm] = useState({ ...mockUser });
     const [saving, setSaving] = useState(false);
@@ -127,8 +124,7 @@ export default function ProfilePage() {
     ];
 
     return (
-        <div className="space-y-6 p-8 bg-[#07070d]">
-
+        <div className="max-w-3xl mx-auto space-y-6 p-8 bg-[#07070d]">
             {/* ── Header */}
             <div>
                 <h1 className="text-xl font-semibold text-white">Profile</h1>
@@ -424,5 +420,7 @@ export default function ProfilePage() {
             )}
 
         </div>
-    );
+    )
 }
+
+export default ProfilePage

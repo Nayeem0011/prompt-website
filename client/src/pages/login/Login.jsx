@@ -23,7 +23,7 @@ export default function Login({ onNavigate }) {
     };
 
     return (
-        <div className="min-h-screen bg-[#07070d] flex items-center justify-center px-4">
+        <div className="bg-[#07070d] flex items-center justify-center py-12 px-4">
             <div className="relative w-full max-w-md">
                 {/* Logo */}
                 <Link to="/" className="flex items-center justify-center gap-3 mb-10">
@@ -189,3 +189,4 @@ export default function Login({ onNavigate }) {
         </div>
     );
 }
+

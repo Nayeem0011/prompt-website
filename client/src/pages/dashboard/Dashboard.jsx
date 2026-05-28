@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-// ─── Mock data (replace with real API calls) ──────────────────────────────────
+// Mock data (replace with real API calls)
 const mockStats = {
   totalEarnings: 12.847,
   totalPrompts: 34,
@@ -26,7 +27,7 @@ const mockRecentActivity = [
   { id: 5, type: "copy", prompt: "Cinematic Portrait Lighting", time: "5 hours ago", amount: 0.001 },
 ];
 
-// ─── Stat Card ────────────────────────────────────────────────────────────────
+// Stat Card
 function StatCard({ label, value, sub, icon, accent }) {
   return (
     <div className="bg-white/3 border border-white/[0.07] rounded-2xl p-5 flex flex-col gap-3">
@@ -44,7 +45,7 @@ function StatCard({ label, value, sub, icon, accent }) {
   );
 }
 
-// ─── Mini Bar Chart ───────────────────────────────────────────────────────────
+// Mini Bar Chart
 function MiniChart({ data }) {
   const max = Math.max(...data);
   const months = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
@@ -68,7 +69,7 @@ function MiniChart({ data }) {
   );
 }
 
-// ─── Status Badge ─────────────────────────────────────────────────────────────
+// Status Badge
 function StatusBadge({ status }) {
   return status === "active" ? (
     <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg">
@@ -83,7 +84,7 @@ function StatusBadge({ status }) {
   );
 }
 
-// ─── Activity Icon ────────────────────────────────────────────────────────────
+// Activity Icon
 function ActivityIcon({ type }) {
   if (type === "copy") return (
     <span className="w-8 h-8 rounded-xl bg-violet-500/15 flex items-center justify-center text-violet-400">
@@ -103,7 +104,7 @@ function ActivityIcon({ type }) {
   );
 }
 
-// ─── Main Dashboard ───────────────────────────────────────────────────────────
+// Main Dashboard
 export default function Dashboard() {
   const [stats, setStats] = useState(null);
   const [prompts, setPrompts] = useState([]);
@@ -159,15 +160,17 @@ export default function Dashboard() {
           <h1 className="text-xl font-semibold text-white">Dashboard</h1>
           <p className="text-sm text-white/35 mt-0.5">Your earnings & prompt performance</p>
         </div>
-        <button className="flex items-center gap-2 bg-linear-to-r from-violet-600 to-fuchsia-600 hover:opacity-90 rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition-all">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M7 1v12M2 7h10" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
-          </svg>
-          Add Prompt
-        </button>
+        <Link to="/sell-prompt">
+          <button className="flex items-center gap-2 bg-linear-to-r from-violet-600 to-fuchsia-600 hover:opacity-90 rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition-all cursor-pointer">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1v12M2 7h10" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+            Add Prompt
+          </button>
+        </Link>
       </div>
 
-      {/* ── Stat Cards */}
+      {/* Stat Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           label="Total Earnings"
@@ -219,7 +222,7 @@ export default function Dashboard() {
         />
       </div>
 
-      {/* ── Chart + Activity */}
+      {/* Chart + Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
 
         {/* Earnings Chart */}
@@ -258,7 +261,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* ── Prompts Table */}
+      {/* Prompts Table */}
       <div className="bg-white/3 border border-white/[0.07] rounded-2xl overflow-hidden">
         <div className="flex items-center justify-between p-5 border-b border-white/6">
           <p className="text-sm font-medium text-white">My Prompts</p>
@@ -268,8 +271,8 @@ export default function Dashboard() {
                 key={f}
                 onClick={() => setActiveFilter(f)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium capitalize transition-all duration-150 ${activeFilter === f
-                    ? "bg-white/10 text-white"
-                    : "text-white/35 hover:text-white/60"
+                  ? "bg-white/10 text-white"
+                  : "text-white/35 hover:text-white/60"
                   }`}
               >
                 {f}
@@ -290,7 +293,7 @@ export default function Dashboard() {
               </tr>
             </thead>
             <tbody>
-              {filteredPrompts.map((prompt, i) => (
+              {filteredPrompts.map((prompt) => (
                 <tr
                   key={prompt.id}
                   className="border-b border-white/4 hover:bg-white/2 transition-colors"
@@ -345,7 +348,7 @@ export default function Dashboard() {
         )}
       </div>
 
-      {/* ── Withdraw Section */}
+      {/* Withdraw Section */}
       <div className="bg-linear-to-r from-violet-600/10 to-fuchsia-600/10 border border-white/[0.07] rounded-2xl p-5 flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-white">Ready to withdraw?</p>
@@ -366,3 +369,4 @@ export default function Dashboard() {
     </div>
   );
 }
+

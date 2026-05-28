@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
-// ─── Constants ────────────────────────────────────────────────────────────────
+// Constants
 const CATEGORIES = [
     { id: "portraits", label: "Portraits", icon: "👤", color: "from-violet-500/20 to-fuchsia-500/20", border: "border-violet-500/30", text: "text-violet-300" },
     { id: "ads", label: "Ads & Product", icon: "📦", color: "from-amber-500/20 to-orange-500/20", border: "border-amber-500/30", text: "text-amber-300" },
@@ -18,7 +18,7 @@ const STEPS = [
     { id: 4, label: "Preview" },
 ];
 
-// ─── Components ───────────────────────────────────────────────────────────────
+// Components
 function StepIndicator({ currentStep }) {
     return (
         <div className="flex items-center gap-0 mb-8">
@@ -26,10 +26,10 @@ function StepIndicator({ currentStep }) {
                 <div key={step.id} className="flex items-center flex-1 last:flex-none">
                     <div className="flex flex-col items-center">
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold border transition-all duration-300 ${currentStep === step.id
-                            ? "bg-gradient-to-br from-violet-600 to-fuchsia-600 border-transparent text-white shadow-lg shadow-fuchsia-900/30"
+                            ? "bg-linear-to-br from-violet-600 to-fuchsia-600 border-transparent text-white shadow-lg shadow-fuchsia-900/30"
                             : currentStep > step.id
                                 ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400"
-                                : "bg-white/[0.04] border-white/[0.1] text-white/25"
+                                : "bg-white/4 border-white/10 text-white/25"
                             }`}>
                             {currentStep > step.id ? (
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -65,7 +65,7 @@ function Input({ value, onChange, placeholder, maxLength, type = "text" }) {
                 onChange={(e) => onChange(e.target.value)}
                 placeholder={placeholder}
                 maxLength={maxLength}
-                className="w-full bg-white/[0.04] border border-white/[0.08] hover:border-white/[0.14] focus:border-fuchsia-500/50 focus:bg-white/[0.06] rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200"
+                className="w-full bg-white/4 border border-white/8 hover:border-white/[0.14] focus:border-fuchsia-500/50 focus:bg-white/6 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-all duration-200"
             />
             {maxLength && (
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-white/20">
@@ -76,7 +76,7 @@ function Input({ value, onChange, placeholder, maxLength, type = "text" }) {
     );
 }
 
-// ─── Step 1: Basic Info ───────────────────────────────────────────────────────
+// Step 1: Basic Info
 function Step1({ form, update }) {
     return (
         <div className="space-y-6">
@@ -100,8 +100,8 @@ function Step1({ form, update }) {
                             type="button"
                             onClick={() => update("category", cat.id)}
                             className={`group flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-200 text-left ${form.category === cat.id
-                                ? `bg-gradient-to-br ${cat.color} ${cat.border}`
-                                : "bg-white/[0.03] border-white/[0.07] hover:bg-white/[0.06] hover:border-white/[0.12]"
+                                ? `bg-linear-to-br ${cat.color} ${cat.border}`
+                                : "bg-white/3 border-white/[0.07] hover:bg-white/6 hover:border-white/12"
                                 }`}
                         >
                             <span className="text-xl leading-none">{cat.icon}</span>
@@ -109,7 +109,7 @@ function Step1({ form, update }) {
                                 {cat.label}
                             </span>
                             {form.category === cat.id && (
-                                <div className="ml-auto w-4 h-4 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center flex-shrink-0">
+                                <div className="ml-auto w-4 h-4 rounded-full bg-linear-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center shrink-0">
                                     <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l1.5 1.5 3.5-3.5" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></svg>
                                 </div>
                             )}
@@ -126,7 +126,7 @@ function Step1({ form, update }) {
                     placeholder="What does this prompt do? What makes it special? Who is it for?"
                     rows={3}
                     maxLength={200}
-                    className="w-full bg-white/[0.04] border border-white/[0.08] hover:border-white/[0.14] focus:border-fuchsia-500/50 focus:bg-white/[0.06] rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 outline-none resize-none transition-all duration-200"
+                    className="w-full bg-white/4 border border-white/8 hover:border-white/[0.14] focus:border-fuchsia-500/50 focus:bg-white/6 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 outline-none resize-none transition-all duration-200"
                 />
                 <div className="flex items-center justify-between mt-1.5">
                     <p className="text-xs text-white/25">Shown on the prompt card</p>
@@ -137,7 +137,7 @@ function Step1({ form, update }) {
     );
 }
 
-// ─── Step 2: Prompt Text ──────────────────────────────────────────────────────
+// Step 2: Prompt Text
 function Step2({ form, update }) {
     const [charCount, setCharCount] = useState(form.promptText.length);
 
@@ -150,7 +150,7 @@ function Step2({ form, update }) {
         <div className="space-y-6">
             {/* Tip box */}
             <div className="flex gap-3 bg-violet-500/8 border border-violet-500/15 rounded-xl p-4">
-                <div className="w-8 h-8 bg-violet-500/15 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 bg-violet-500/15 rounded-lg flex items-center justify-center shrink-0">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-violet-400">
                         <circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.3" />
                         <path d="M7 5v4M7 4v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -179,7 +179,7 @@ function Step2({ form, update }) {
 Example:
 A cinematic portrait with dramatic Rembrandt lighting, one side of the face illuminated by warm golden hour light, the other in deep shadow, shot on 85mm f/1.4 lens, ultra-realistic skin texture, professional studio photography, 8K resolution --ar 2:3 --v 6"
                     rows={10}
-                    className="w-full bg-white/[0.04] border border-white/[0.08] hover:border-white/[0.14] focus:border-fuchsia-500/50 focus:bg-white/[0.06] rounded-xl px-4 py-3 text-sm text-white placeholder-white/15 outline-none resize-none transition-all duration-200 font-mono leading-relaxed"
+                    className="w-full bg-white/4 border border-white/8 hover:border-white/[0.14] focus:border-fuchsia-500/50 focus:bg-white/6 rounded-xl px-4 py-3 text-sm text-white placeholder-white/15 outline-none resize-none transition-all duration-200 font-mono leading-relaxed"
                 />
             </div>
 
@@ -200,7 +200,7 @@ A cinematic portrait with dramatic Rembrandt lighting, one side of the face illu
                             }}
                             className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all duration-150 ${(form.aiTools || []).includes(tool)
                                 ? "bg-fuchsia-500/15 border-fuchsia-500/40 text-fuchsia-300"
-                                : "bg-white/[0.04] border-white/[0.07] text-white/35 hover:border-white/[0.15] hover:text-white/60"
+                                : "bg-white/4 border-white/8 text-white/35 hover:border-white/15 hover:text-white/60"
                                 }`}
                         >
                             {tool}
@@ -237,7 +237,7 @@ function Step3({ form, update }) {
             {/* Tags */}
             <div>
                 <Label>Tags</Label>
-                <div className="bg-white/4 border border-white/[0.08] hover:border-white/[0.14] focus-within:border-fuchsia-500/50 rounded-xl px-3 py-2.5 transition-all duration-200 min-h-[48px] flex flex-wrap gap-2 items-center">
+                <div className="bg-white/4 border border-white/8 hover:border-white/[0.14] focus-within:border-fuchsia-500/50 rounded-xl px-3 py-2.5 transition-all duration-200 min-h-12 flex flex-wrap gap-2 items-center">
                     {(form.tags || []).map((tag) => (
                         <span key={tag} className="flex items-center gap-1.5 bg-fuchsia-500/15 border border-fuchsia-500/25 text-fuchsia-300 text-xs font-medium px-2.5 py-1 rounded-lg">
                             {tag}
@@ -259,9 +259,9 @@ function Step3({ form, update }) {
             </div>
 
             {/* Pricing info */}
-            <div className="bg-gradient-to-br from-violet-600/10 to-fuchsia-600/10 border border-white/[0.07] rounded-2xl p-5">
+            <div className="bg-linear-to-br from-violet-600/10 to-fuchsia-600/10 border border-white/[0.07] rounded-2xl p-5">
                 <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-fuchsia-600 rounded-lg flex items-center justify-center">
+                    <div className="w-8 h-8 bg-linear-to-br from-violet-500 to-fuchsia-600 rounded-lg flex items-center justify-center">
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="white" strokeWidth="1.3" /><path d="M7 4.5v5M5.5 5.5C5.5 4.8 6.2 4.2 7 4.2s1.5.6 1.5 1.3-1 1.3-1.5 1.3-1.5.6-1.5 1.3 1 1.3 1.5 1.3 1.5-.6 1.5-1.3" stroke="white" strokeWidth="1.2" strokeLinecap="round" /></svg>
                     </div>
                     <div>
@@ -275,7 +275,7 @@ function Step3({ form, update }) {
                         { label: "1,000 copies", value: "$1.00" },
                         { label: "10,000 copies", value: "$10.00" },
                     ].map((item) => (
-                        <div key={item.label} className="bg-white/[0.04] rounded-xl py-3">
+                        <div key={item.label} className="bg-white/4 rounded-xl py-3">
                             <p className="text-sm font-semibold text-fuchsia-400">{item.value}</p>
                             <p className="text-[10px] text-white/30 mt-0.5">{item.label}</p>
                         </div>
@@ -296,7 +296,7 @@ function Step3({ form, update }) {
                             onClick={() => update("visibility", opt.id)}
                             className={`flex items-center gap-3 p-4 rounded-xl border text-left transition-all duration-150 ${form.visibility === opt.id
                                 ? "border-fuchsia-500/40 bg-fuchsia-500/8"
-                                : "border-white/[0.07] bg-white/[0.03] hover:bg-white/[0.06]"
+                                : "border-white/[0.07] bg-white/3 hover:bg-white/6"
                                 }`}
                         >
                             <span className="text-xl">{opt.icon}</span>
@@ -305,7 +305,7 @@ function Step3({ form, update }) {
                                 <p className="text-xs text-white/30">{opt.desc}</p>
                             </div>
                             {form.visibility === opt.id && (
-                                <div className="ml-auto w-4 h-4 rounded-full bg-fuchsia-500 flex items-center justify-center flex-shrink-0">
+                                <div className="ml-auto w-4 h-4 rounded-full bg-fuchsia-500 flex items-center justify-center shrink-0">
                                     <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l1.5 1.5 3.5-3.5" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></svg>
                                 </div>
                             )}
@@ -317,7 +317,7 @@ function Step3({ form, update }) {
     );
 }
 
-// ─── Step 4: Preview ──────────────────────────────────────────────────────────
+// Step 4: Preview
 function Step4({ form }) {
     const [copied, setCopied] = useState(false);
     const cat = CATEGORIES.find((c) => c.id === form.category);
@@ -330,9 +330,9 @@ function Step4({ form }) {
 
     return (
         <div className="space-y-5">
-            <div className="bg-white/[0.03] border border-white/[0.08] rounded-2xl overflow-hidden">
+            <div className="bg-white/3 border border-white/8 rounded-2xl overflow-hidden">
                 {/* Card preview */}
-                <div className={`h-36 bg-gradient-to-br ${cat?.color || "from-white/5 to-white/10"} flex items-center justify-center relative`}>
+                <div className={`h-36 bg-linear-to-br ${cat?.color || "from-white/5 to-white/10"} flex items-center justify-center relative`}>
                     <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-2xl">
                         {cat?.icon || "✨"}
                     </div>
@@ -352,12 +352,12 @@ function Step4({ form }) {
                     <p className="text-sm text-white/45 leading-relaxed mb-3">{form.description || "No description added."}</p>
                     <div className="flex flex-wrap gap-1.5 mb-4">
                         {(form.tags || []).map((tag) => (
-                            <span key={tag} className="text-[10px] bg-white/[0.06] text-white/40 px-2 py-0.5 rounded-md">{tag}</span>
+                            <span key={tag} className="text-[10px] bg-white/6 text-white/40 px-2 py-0.5 rounded-md">{tag}</span>
                         ))}
                     </div>
-                    <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
+                    <div className="flex items-center justify-between pt-3 border-t border-white/6">
                         <div className="flex items-center gap-2">
-                            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center text-[10px] font-bold text-white">Y</div>
+                            <div className="w-6 h-6 rounded-full bg-linear-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center text-[10px] font-bold text-white">Y</div>
                             <span className="text-xs text-white/40">You</span>
                         </div>
                         <span className={`text-xs font-medium px-2 py-0.5 rounded-md ${cat?.text || "text-white/50"}`}>{cat?.label || "—"}</span>
@@ -366,10 +366,10 @@ function Step4({ form }) {
             </div>
 
             {/* Prompt text preview */}
-            <div className="bg-white/[0.03] border border-white/[0.07] rounded-2xl overflow-hidden">
-                <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.06]">
+            <div className="bg-white/3 border border-white/[0.07] rounded-2xl overflow-hidden">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-white/6">
                     <p className="text-xs font-semibold text-white/50 uppercase tracking-wider">Prompt Text</p>
-                    <button onClick={handleCopy} className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg transition-all duration-150 ${copied ? "bg-emerald-500/15 text-emerald-400" : "bg-white/[0.06] text-white/50 hover:text-white/80"}`}>
+                    <button onClick={handleCopy} className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg transition-all duration-150 ${copied ? "bg-emerald-500/15 text-emerald-400" : "bg-white/6 text-white/50 hover:text-white/80"}`}>
                         {copied ? <><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5l2.5 2.5 4.5-4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>Copied</> : <><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="3.5" y="3.5" width="6" height="6" rx="1.2" stroke="currentColor" strokeWidth="1.1" /><path d="M1.5 7.5V2a1 1 0 011-1H8" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" /></svg>Test Copy</>}
                     </button>
                 </div>
@@ -381,7 +381,7 @@ function Step4({ form }) {
             </div>
 
             {/* Summary */}
-            <div className="bg-white/[0.03] border border-white/[0.07] rounded-2xl p-4">
+            <div className="bg-white/3 border border-white/[0.07] rounded-2xl p-4">
                 <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Summary</p>
                 <div className="space-y-2">
                     {[
@@ -392,7 +392,7 @@ function Step4({ form }) {
                         { label: "Prompt length", value: `${form.promptText.length} characters` },
                     ].map((row) => (
                         <div key={row.label} className="flex items-start justify-between gap-4">
-                            <span className="text-xs text-white/30 flex-shrink-0">{row.label}</span>
+                            <span className="text-xs text-white/30 shrink-0">{row.label}</span>
                             <span className="text-xs text-white/65 text-right">{row.value}</span>
                         </div>
                     ))}
@@ -402,8 +402,9 @@ function Step4({ form }) {
     );
 }
 
-// ─── Main Page ────────────────────────────────────────────────────────────────
-export default function SellPromptPage({ onSuccess }) {
+// Main Page 
+
+const SellPromptPage = ({ onSuccess }) => {
     const [step, setStep] = useState(1);
     const [submitting, setSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
@@ -467,11 +468,11 @@ export default function SellPromptPage({ onSuccess }) {
         }
     };
 
-    // ── Success screen ────────────────────────────────────────────────────────
+    // Success screen
     if (submitted) {
         return (
             <div className="max-w-md mx-auto text-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 border border-fuchsia-500/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-linear-to-br from-violet-500/20 to-fuchsia-500/20 border border-fuchsia-500/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
                     <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
                         <circle cx="18" cy="18" r="16" stroke="url(#sg)" strokeWidth="1.5" />
                         <path d="M11 18l5 5 9-9" stroke="#e879f9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -486,13 +487,13 @@ export default function SellPromptPage({ onSuccess }) {
                 <div className="grid grid-cols-2 gap-3">
                     <button
                         onClick={() => { setSubmitted(false); setStep(1); setForm({ title: "", category: "", description: "", promptText: "", aiTools: [], tags: [], visibility: "public" }); }}
-                        className="py-3 rounded-xl border border-white/[0.08] text-sm font-medium text-white/55 hover:text-white/80 transition-all"
+                        className="py-3 rounded-xl border border-white/8 text-sm font-medium text-white/55 hover:text-white/80 transition-all"
                     >
                         Add Another
                     </button>
                     <button
                         onClick={() => onSuccess && onSuccess()}
-                        className="py-3 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:opacity-90 text-sm font-semibold text-white transition-all"
+                        className="py-3 rounded-xl bg-linear-to-r from-violet-600 to-fuchsia-600 hover:opacity-90 text-sm font-semibold text-white transition-all"
                     >
                         View My Prompts
                     </button>
@@ -515,7 +516,7 @@ export default function SellPromptPage({ onSuccess }) {
             {/* Error banner */}
             {Object.keys(errors).length > 0 && (
                 <div className="bg-red-500/8 border border-red-500/20 rounded-xl px-4 py-3 mb-5 flex items-start gap-3">
-                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" className="text-red-400 flex-shrink-0 mt-0.5">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" className="text-red-400 shrink-0 mt-0.5">
                         <circle cx="7.5" cy="7.5" r="6" stroke="currentColor" strokeWidth="1.3" />
                         <path d="M7.5 4.5v4M7.5 10v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
@@ -528,7 +529,7 @@ export default function SellPromptPage({ onSuccess }) {
             )}
 
             {/* Form card */}
-            <div className="bg-white/[0.02] border border-white/[0.07] rounded-2xl p-6 mb-5">
+            <div className="bg-white/2 border border-white/[0.07] rounded-2xl p-6 mb-5">
                 <div className="text-xs font-semibold text-white/25 uppercase tracking-widest mb-5">
                     Step {step} — {STEPS[step - 1].label}
                 </div>
@@ -543,7 +544,7 @@ export default function SellPromptPage({ onSuccess }) {
                 <button
                     onClick={prevStep}
                     disabled={step === 1}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/[0.08] text-sm font-medium text-white/45 hover:text-white/75 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/8 text-sm font-medium text-white/45 hover:text-white/75 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                 >
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     Back
@@ -551,17 +552,17 @@ export default function SellPromptPage({ onSuccess }) {
 
                 <div className="flex items-center gap-1.5">
                     {STEPS.map((s) => (
-                        <div key={s.id} className={`h-1.5 rounded-full transition-all duration-300 ${step === s.id ? "w-6 bg-fuchsia-500" : step > s.id ? "w-3 bg-emerald-500/50" : "w-3 bg-white/[0.1]"}`} />
+                        <div key={s.id} className={`h-1.5 rounded-full transition-all duration-300 ${step === s.id ? "w-6 bg-fuchsia-500" : step > s.id ? "w-3 bg-emerald-500/50" : "w-3 bg-white/10"}`} />
                     ))}
                 </div>
 
                 {step < 4 ? (
-                    <button onClick={nextStep} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:opacity-90 text-sm font-semibold text-white transition-all">
+                    <button onClick={nextStep} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-linear-to-r from-violet-600 to-fuchsia-600 hover:opacity-90 text-sm font-semibold text-white transition-all">
                         Next
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </button>
                 ) : (
-                    <button onClick={handleSubmit} disabled={submitting} className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:opacity-90 disabled:opacity-60 text-sm font-semibold text-white transition-all shadow-lg shadow-fuchsia-900/30">
+                    <button onClick={handleSubmit} disabled={submitting} className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-linear-to-r from-violet-600 to-fuchsia-600 hover:opacity-90 disabled:opacity-60 text-sm font-semibold text-white transition-all shadow-lg shadow-fuchsia-900/30">
                         {submitting ? (
                             <><svg className="animate-spin" width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="white" strokeWidth="1.5" strokeDasharray="18" strokeDashoffset="10" strokeLinecap="round" /></svg>Publishing...</>
                         ) : (
@@ -573,4 +574,6 @@ export default function SellPromptPage({ onSuccess }) {
         </div>
     );
 }
+
+export default SellPromptPage
 
