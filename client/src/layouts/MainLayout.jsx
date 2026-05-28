@@ -30,7 +30,7 @@ const MainLayout = () => {
           setActiveSideNav={setActiveSideNav}
         />
         <main
-          className={`flex-1 overflow-y-auto transition-all duration-300 ${collapsed ? "pl-16" : "pl-60"
+          className={`flex-1 overflow-y-auto transition-all duration-300 ${collapsed ? "pl-10 md:pl-12 lg:pl-16" : "pl-60"
             }`}
         >
           <Outlet context={{ activePage, activeCategory, setActiveCategory }} />
